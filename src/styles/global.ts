@@ -18,7 +18,7 @@ export const globalStyles = globalCss({
   },
 
   'body, input, text-area, button' : {
-    fontFamily: 'Robot, sans-serif',
+    fontFamily: 'Roboto, sans-serif',
     fontSize: '1.6rem',
     fontWeight: 400,
   },
