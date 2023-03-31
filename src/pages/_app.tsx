@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import { Handbag } from 'phosphor-react';
 import type { AppProps } from 'next/app'
 
 import logoImage from '@/assets/logo.svg'
 import { globalStyles } from '@/styles/global';
 import { AppContainer, Header } from '@/styles/pages/app';
+import { ShoppingCart } from '@/components/ShoppingCart';
 
 globalStyles();
 
@@ -13,11 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <AppContainer>
       <Header>
         <Image src={logoImage} alt='' />
-
-        <button>
-          <Handbag size={22} />
-          <span>1</span>
-        </button>
+        <ShoppingCart />
       </Header>
 
       <Component {...pageProps} />
