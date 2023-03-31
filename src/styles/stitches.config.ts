@@ -16,6 +16,7 @@ export const {
       greenLight: '#00B37E',
       gray900: '#121214',
       gray800: '#202024',
+      gray600: '#8D8D99',
       gray500: '#C4C4CC',
       gray400: '#E1E1E6',
       white: '#FFFFFF'

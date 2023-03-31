@@ -6,6 +6,7 @@ export const HomeContainer = styled('div', {
   maxWidth: "calc(1168px + ((100vw - 1168px) / 2))",
   marginLeft: "auto",
   minHeight: "656px",
+  padding: "0 1.6rem"
 })
 
 export const ProductContainer = styled('div', {

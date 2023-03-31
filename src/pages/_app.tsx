@@ -1,5 +1,6 @@
-import type { AppProps } from 'next/app'
 import Image from 'next/image'
+import { Handbag } from 'phosphor-react';
+import type { AppProps } from 'next/app'
 
 import logoImage from '@/assets/logo.svg'
 import { globalStyles } from '@/styles/global';
@@ -12,6 +13,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <AppContainer>
       <Header>
         <Image src={logoImage} alt='' />
+
+        <button>
+          <Handbag size={22} />
+        </button>
       </Header>
 
       <Component {...pageProps} />
