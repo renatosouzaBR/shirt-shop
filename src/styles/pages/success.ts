@@ -14,7 +14,8 @@ export const SuccessContainer = styled('main', {
   h1: {
     fontSize: "3.2rem",
     fontWeight: 700,
-    color: "$gray400"
+    color: "$gray400",
+    marginTop: '4.8rem'
   },
 
   span: {
@@ -22,6 +23,7 @@ export const SuccessContainer = styled('main', {
     marginTop: "3.2rem",
     fontSize: "2.4rem",
     fontWeight: 400,
+    lineHeight: 1.4,
     color: "$gray500",
     maxWidth: 590,
     textAlign: "center",
@@ -32,7 +34,7 @@ export const SuccessContainer = styled('main', {
   },
 
   a: {
-    marginTop: "8.8rem",
+    marginTop: "6.4rem",
     fontSize: "2rem",
     fontWeight: 700,
     color: "$green",
@@ -50,9 +52,9 @@ export const ImageContainer = styled('div', {
   alignItems: "center",
 
   background: "linear-gradient(180deg, #1EA483 0%, #7465D4 100%)",
-  borderRadius: 8,
-  width: 127,
-  height: 145,
+  borderRadius: '100%',
+  width: 140,
+  height: 140,
   marginTop: "6.4rem",
 
   img: {

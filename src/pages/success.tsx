@@ -24,13 +24,15 @@ export default function Success({ customerName, product }: SuccessProps) {
       </Head>
       
       <SuccessContainer>
-        <h1>Compra Efetuada</h1>
-
         <ImageContainer>
           <Image src={product.imageURL} width={114} height={106} alt="" />
         </ImageContainer>
 
-        <span>Uhuul <strong>{customerName}</strong>, sua <strong>{product.name}</strong> já está a caminho da sua casa. </span>
+        <h1>Compra Efetuada</h1> 
+
+        <span>
+          Uhuul <strong>{customerName}</strong>, sua compra de {product.name} camisetas já está a caminho da sua casa.
+        </span>
 
         <Link href="/">
           Voltar ao catálogo
