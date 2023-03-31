@@ -28,7 +28,7 @@ export const ProductContainer = styled('div', {
   footer: {
     background: "rgba(32, 32, 36, 0.9)",
     borderRadius: 6,
-    padding: "3.2rem",
+    padding: "2rem",
 
     display: "flex",
     justifyContent: "space-between",
@@ -43,6 +43,12 @@ export const ProductContainer = styled('div', {
     opacity: 0,
     transition: "all 0.2s ease-in-out",
 
+    div: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "0.8rem"
+    },
+
     strong : {
       fontSize: "2rem",
       fontWeight: "700",
@@ -53,6 +59,23 @@ export const ProductContainer = styled('div', {
       fontSize: "2.4rem",
       fontWeight: "700",
       color: "$greenLight",
+    },
+
+    button: {
+      padding: '1.2rem',
+      borderRadius: 6,
+      border: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '$green',
+      color: '$white',
+      cursor: 'pointer',
+      transition: "opacity 0.2s",
+
+      "&:hover": {
+        opacity: 0.8
+      }
     }
   },
 
