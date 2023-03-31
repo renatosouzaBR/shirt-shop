@@ -113,6 +113,7 @@ export const ShoppingCartSummary = styled('div', {
       fontSize: '1.8rem',
       fontWeight: '700',
       cursor: 'pointer',
+      transition: "background-color 0.2s",
 
       '&:hover': {
         backgroundColor: '$greenLight',
@@ -181,6 +182,7 @@ export const ShoppingCartProduct = styled('div', {
       backgroundColor: 'transparent',
       border: 0,
       cursor: 'pointer',
+      transition: "background-color 0.2s",
 
       '&:hover': {
         color: '$greenLight',
