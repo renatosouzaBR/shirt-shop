@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
         <button>
           <Handbag size={22} />
+          <span>1</span>
         </button>
       </Header>
 

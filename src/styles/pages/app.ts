@@ -26,9 +26,30 @@ export const Header = styled('header', {
     color: '$gray600',
     cursor: 'pointer',
     transition: "opacity 0.2s",
+    position: "relative",
+    maxHeight: "4.8rem",
 
     "&:hover": {
       opacity: 0.8
+    },
+
+    span: {
+      backgroundColor: '$green',
+      color: '$white',
+
+      width: "2.7rem",
+      height: "2.7rem",
+      borderRadius: "100%",
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: "1.4rem",
+      fontWeight: "bold",
+      border: "3px solid $gray900",
+
+      position: "absolute",
+      top: "-16%",
+      right: "-20%",
     }
   }
 })
