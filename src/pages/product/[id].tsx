@@ -1,40 +1,39 @@
 import { useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Stripe from "stripe";
-import axios from 'axios'
 import Image from "next/image";
 
 import { stripe } from "@/lib/stripe";
 import { DetailsContainer, ImageContainer, ProductContainer } from "@/styles/pages/product";
 import Head from "next/head";
+import { useShoppingCart } from "@/contexts/shoppingCart";
+import { useRouter } from "next/router";
 
 interface ProductProps {
   product: {
     id: string
     name: string
-    imageURL: string
-    price: number,
-    formattedPrice: string,
-    priceId: string,
     description: string
+    imageURL: string
+    price: number
+    priceId: string,
+    formattedPrice: string
   }
 }
 
 export default function Product({ product }: ProductProps) {
+  const router = useRouter();
+  const { addProductToShippingCart } = useShoppingCart();
   const [isCheckoutingProcessing, setIsCheckoutingProcessing] = useState(false)
 
-  async function handleBuyProduct() {
+  async function handleAddProductToShoppingCart() {
     try {
       setIsCheckoutingProcessing(true)
-      const response = await axios.post('/api/checkout', {
-        priceId: product.priceId,
-      })
-
-      const { checkoutURL } = response.data
-      window.location.href = checkoutURL
+      addProductToShippingCart(product)
+      router.push('/')
     } catch (error) {
       setIsCheckoutingProcessing(false)
-      alert('Não foi possível concluir o pagamento')
+      alert('Não foi adicionar o produto no carrinho')
     }
   }
 
@@ -56,9 +55,9 @@ export default function Product({ product }: ProductProps) {
 
           <button
             disabled={isCheckoutingProcessing} 
-            onClick={handleBuyProduct}
+            onClick={handleAddProductToShoppingCart}
             >
-              Comprar agora
+              Colocar na sacola
           </button>
         </DetailsContainer>
       </ProductContainer>
@@ -93,11 +92,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       product: {
         id: product.id,
         name: product.name,
+        description: product.description,
         imageURL: product.images[0],
         price: price.unit_amount! / 100,
         priceId: price.id,
-        formattedPrice,
-        description: product.description
+        formattedPrice
       }
     },
     revalidate: 60 * 60 * 1 // 1hour

@@ -56,8 +56,18 @@ export const ImageContainer = styled('div', {
   width: 140,
   height: 140,
   marginTop: "6.4rem",
+  boxShadow: "0px 0px 60px rgba(0, 0, 0, 0.8)",
+
+  '&:nth-child(n+2)': {
+    marginLeft: -52,
+  },
 
   img: {
     objectFit: "cover"
   }
+})
+
+export const ImagesArea = styled('div', {
+  display: "flex",
+  justifyContent: "center",
 })

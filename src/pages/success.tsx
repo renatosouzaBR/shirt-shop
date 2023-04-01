@@ -4,18 +4,18 @@ import Image from 'next/image';
 import Stripe from 'stripe';
 
 import { stripe } from '@/lib/stripe';
-import { SuccessContainer, ImageContainer } from "@/styles/pages/success";
+import { SuccessContainer, ImageContainer, ImagesArea } from "@/styles/pages/success";
 import Head from 'next/head';
 
 interface SuccessProps {
   customerName: string
-  product: {
-    name: string
+  products: {
+    id: string
     imageURL: string
-  }
+  }[]
 }
 
-export default function Success({ customerName, product }: SuccessProps) {
+export default function Success({ customerName, products }: SuccessProps) {
   return (
     <>
       <Head>
@@ -24,14 +24,19 @@ export default function Success({ customerName, product }: SuccessProps) {
       </Head>
       
       <SuccessContainer>
-        <ImageContainer>
-          <Image src={product.imageURL} width={114} height={106} alt="" />
-        </ImageContainer>
+        <ImagesArea>
+          {products.map(product => 
+            <ImageContainer key={product.id}>
+              <Image src={product.imageURL} width={114} height={106} alt="" />
+            </ImageContainer>
+          )}
+        </ImagesArea>
+          
 
         <h1>Compra Efetuada</h1> 
 
         <span>
-          Uhuul <strong>{customerName}</strong>, sua compra de {product.name} camisetas já está a caminho da sua casa.
+          Uhuul <strong>{customerName}</strong>, sua compra de {products.length} camisetas já está a caminho da sua casa.
         </span>
 
         <Link href="/">
@@ -58,15 +63,19 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   })
   
   const customerName = session.customer_details?.name
-  const product = session.line_items?.data[0].price?.product as Stripe.Product
+  const products = session.line_items?.data.map(item => {
+    const product = item.price?.product as Stripe.Product
+
+    return {
+      id: product.id,
+      imageURL: product.images[0]
+    }
+  })
 
   return {
     props: {
       customerName,
-      product: {
-        name: product.name,
-        imageURL: product.images[0]
-      }
+      products
     },
   }
 }

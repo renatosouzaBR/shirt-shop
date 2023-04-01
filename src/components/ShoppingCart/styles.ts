@@ -57,6 +57,14 @@ export const ShoppingCartSummary = styled('div', {
   boxShadow: "-4px 0px 30px rgba(0, 0, 0, 0.8)",
   transition: "all 0.2s ease-in",
 
+  h2: {
+    margin: 'auto 0',
+    fontSize: '2.4rem',
+    fontWeight: '700',
+    color: '$gray400',
+    textAlign: 'center'
+  },
+
   header: {
     position: "absolute",
     top: '2.4rem',
@@ -115,7 +123,12 @@ export const ShoppingCartSummary = styled('div', {
       cursor: 'pointer',
       transition: "background-color 0.2s",
 
-      '&:hover': {
+      '&:disabled': {
+        opacity: 0.6,
+        cursor: 'not-allowed'
+      },
+
+      '&:not(:disabled):hover': {
         backgroundColor: '$greenLight',
       }
     }
@@ -149,8 +162,6 @@ export const ShoppingCartProduct = styled('div', {
 
   img: {
     objectFit: 'cover',
-    width: 102,
-    height: 94,
     borderRadius: 8,
     background: "linear-gradient(180deg, #1EA483 0%, #7465D4 100%)",
   },

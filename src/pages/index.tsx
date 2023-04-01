@@ -9,6 +9,8 @@ import { Handbag } from 'phosphor-react';
 
 import { HomeContainer, ProductContainer } from "@/styles/pages/home";
 import { stripe } from "@/lib/stripe";
+import { useShoppingCart } from '@/contexts/shoppingCart';
+import axios from 'axios';
 
 interface HomeProps {
   products: {
@@ -21,6 +23,7 @@ interface HomeProps {
 }
 
 export default function Home({ products }: HomeProps) {
+  const { addProductToShippingCart } = useShoppingCart();
   const [sliderRef] = useKeenSlider(
     {
       slides: {
@@ -30,8 +33,21 @@ export default function Home({ products }: HomeProps) {
     }
   )
 
-  function AddProductToShippingCart(event: React.MouseEvent<HTMLElement>) {
+  async function AddProductToShippingCart(event: React.MouseEvent<HTMLElement>, productId: string) {
     event.preventDefault();
+
+    try {
+      const response = await axios.get('/api/products', {
+        params: {
+          product_id: productId
+        }
+      })
+
+      const { product } = response.data
+      addProductToShippingCart(product)
+    } catch (error) {
+      alert('Não foi possível adicionar o produto ao carrinho')
+    }
   }
 
   return (
@@ -52,7 +68,7 @@ export default function Home({ products }: HomeProps) {
                   <span>{product.formattedPrice}</span>
                 </div>
 
-                <button onClick={AddProductToShippingCart}>
+                <button onClick={(e) => AddProductToShippingCart(e, product.id)}>
                   <Handbag size={32} />
                 </button>
               </footer>
@@ -81,6 +97,7 @@ export const getStaticProps: GetStaticProps = async () => {
       name: product.name,
       imageURL: product.images[0],
       price: price.unit_amount! / 100,
+      priceId: price.id,
       formattedPrice
     }
   })

@@ -5,18 +5,21 @@ import logoImage from '@/assets/logo.svg'
 import { globalStyles } from '@/styles/global';
 import { AppContainer, Header } from '@/styles/pages/app';
 import { ShoppingCart } from '@/components/ShoppingCart';
+import { ShoppingCartProvider } from '@/contexts/shoppingCart';
 
 globalStyles();
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <AppContainer>
-      <Header>
-        <Image src={logoImage} alt='' />
-        <ShoppingCart />
-      </Header>
+      <ShoppingCartProvider>
+        <Header>
+          <Image src={logoImage} alt='' />
+          <ShoppingCart />
+        </Header>
 
-      <Component {...pageProps} />
+        <Component {...pageProps} />
+      </ShoppingCartProvider>
     </AppContainer>
   )
 }
